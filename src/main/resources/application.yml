@@ -1,0 +1,32 @@
+server:
+  port: 8084
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/books-management-db?createDatabaseIfNotExist=true
+    username: root
+    password: pool
+    initialization-mode: always
+    hikari:
+      max-lifetime: 20000
+  application:
+    name: JWT-AUTH-SERVICE
+
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+
+bezkoder:
+  app:
+    jwtSecret : bezKoderSecretKey
+    jwtExpirationMs : 86400000
