@@ -1,30 +1,45 @@
 server:
   port: 8084
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      dialect: org.hibernate.dialect.MySQL5Dialect
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/books-management-db?createDatabaseIfNotExist=true
+#    username: root
+#    password: pool
+#    initialization-mode: always
+#    hikari:
+#      max-lifetime: 20000
+#  application:
+#    name: JWT-AUTH-SERVICE
+
+
+
 spring:
+  datasource:
+    url: jdbc:mysql://${DB_SERVER}:${DB_PORT:3306}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.MySQL5Dialect
-  datasource:
-    url: jdbc:mysql://localhost:3306/books-management-db?createDatabaseIfNotExist=true
-    username: root
-    password: pool
-    initialization-mode: always
-    hikari:
-      max-lifetime: 20000
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
   application:
     name: JWT-AUTH-SERVICE
 
-
-  servlet:
-    multipart:
-      max-file-size: 20MB
-      max-request-size: 20MB
 eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-0
   client:
     register-with-eureka: true
     fetch-registry: true
-
+    serviceUrl:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
 bezkoder:
   app:
